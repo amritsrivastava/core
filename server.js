@@ -2,8 +2,6 @@ const express = require('express')
 const path = require('path')
 const compress = require('compression')
 
-const messaging = require('./bin/messaging')
-
 const app = express()
 const PORT = process.env.PORT || 3000
 
