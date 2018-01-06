@@ -9,6 +9,7 @@ import Register from './components/register'
 import Complaint from './components/register/complaint'
 import Status from './components/status'
 import Success from './components/success'
+import NotFound from './components/notfound'
 
 import './styles.css'
 
@@ -31,9 +32,10 @@ class Main extends Component {
           <Route exact path='/' component={Home} />
           <Route path='/verify' render={() => <Verify onVerify={this.fallback.bind(this)} />} />
           <Route exact path='/register' render={() => <Register state={this.state.verified} />} />
-          <Route path='/register/:dept' component={Complaint} />
-          <Route path='/s/:id' component={Status} />
+          <Route exact path='/register/:dept' component={Complaint} />
+          <Route path='/complain/:id' component={Status} />
           <Route path='/success' component={Success} />
+          <Route component={NotFound} />
         </Switch>
       </BrowserRouter>
     )

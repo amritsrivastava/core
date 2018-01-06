@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
-import {firebaseApp} from '../../firebase'
+// import {firebaseApp} from '../../firebase'
+// import https from 'https'
 
 class Status extends Component {
   constructor (props) {
@@ -9,27 +10,21 @@ class Status extends Component {
       id: props.match.params.id
     }
 
-    firebaseApp.database().ref('/complaints/' + this.state.id).once('value').then((snapshot) => {
-      // this.setState({data: Object.assign({}, this.state.data, snapshot.val())})
-      this.setState({
-        name: snapshot.val().name,
-        issue: snapshot.val().issue,
-        dept: snapshot.val().dept,
-        flag: true
-      })
-    })
+    // https.get(`https://81fwd1on3h.execute-api.ap-south-1.amazonaws.com/dev/track?id=${props.match.params.id}`, (res) => {
+    //   console.log(res)
+    // })
   }
 
   render () {
-    let content = <div loading />
-
-    if (this.state.flag) {
-      content = <div><div>{this.state.name}</div><div>{this.state.issue}</div><div>{this.state.dept}</div></div>
-    }
+    // let content = <div loading />
+    //
+    // if (this.state.flag) {
+    //   content = <div><div>{this.state.name}</div><div>{this.state.issue}</div><div>{this.state.dept}</div></div>
+    // }
 
     return (
       <div>
-        {content}
+        <h1>Hello</h1>
       </div>
     )
   }

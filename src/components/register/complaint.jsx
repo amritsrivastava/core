@@ -4,25 +4,28 @@ import {Route, Redirect, Switch} from 'react-router-dom'
 import {firebaseApp} from '../../firebase'
 
 import randomstring from 'randomstring'
+import https from 'https'
+import querystring from 'querystring'
 
 class Complaint extends Component {
   constructor (props) {
     super(props)
     this.state = {
       data: {
-        user: null,
+        id: null,
+        mobile: null,
         dept: props.match.params.dept,
         name: null,
         subject: null,
         location: null,
-        description: null,
-        ack: false
+        description: null
       },
       redirect: false
     }
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
-        var data = Object.assign({}, this.state.data, {user: user.phoneNumber})
+        var id = randomstring.generate(6)
+        var data = Object.assign({}, this.state.data, {org: 'jecrc', id: id, mobile: user.phoneNumber})
         this.setState({data})
       } else {
         this.setState({redirect: true})
@@ -36,27 +39,13 @@ class Complaint extends Component {
   }
 
   save (e) {
-    var id = randomstring.generate(6)
-    firebaseApp.database().ref('/complaints/' + id).set(this.state.data)
-    this.setState({
-      id,
-      redirect: true
+    var query = querystring.stringify(this.state.data)
+    console.log(query)
+    https.get(`https://81fwd1on3h.execute-api.ap-south-1.amazonaws.com/dev/post?${query}`, (err, res, body) => {
+      if (err) throw err
+      console.log(body)
     })
-    e.preventDefault()
-  }
-
-  submit (e) {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log('user', user)
-        var data = Object.assign({}, this.state.data, {user: user.uid})
-        this.setState({data})
-        console.log(data)
-        this.save()
-      } else {
-        this.setState({redirect: true})
-      }
-    })
+    this.setState({redirect: true})
     e.preventDefault()
   }
 
@@ -64,7 +53,6 @@ class Complaint extends Component {
     let redirect = null
 
     if (this.state.redirect) {
-      console.log(this.state.id)
       return (<Redirect to={{
         pathname: '/success'
       }} />)
