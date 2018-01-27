@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 
 const DIST_DIR = path.resolve(__dirname, 'dist')
 const SRC_DIR = path.resolve(__dirname, 'src')
@@ -22,6 +23,12 @@ var config = {
       algorithm: 'gzip',
       threshold: 10240,
       minRation: 0.8
+    }),
+    new ImageminPlugin({
+      disable: process.env.NODE_ENV !== 'production',
+      pngquant: {
+        quality: '40'
+      }
     })
   ],
   output: {
@@ -37,10 +44,11 @@ var config = {
         exclude: '/node_modules/'
       },
       {
-        test: /\.css$/,
+        test: /\.(s*)css$/,
         use: [
           'style-loader',
-          'css-loader'
+          'css-loader',
+          'sass-loader'
         ]
       },
       {
@@ -61,6 +69,14 @@ var config = {
   watch: true,
   watchOptions: {
     ignored: /node_modules/
+  },
+  node: {
+    fs: 'empty'
+  },
+  devServer: {
+    contentBase: DIST_DIR,
+    port: 8090,
+    host: '192.168.31.39'
   }
 }
 

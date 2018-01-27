@@ -2,9 +2,6 @@ import React, {Component} from 'react'
 import {Route, Redirect, Link} from 'react-router-dom'
 
 import {firebase, firebaseApp} from '../../firebase'
-import '../../styles.css'
-
-import LogoWhite from '../../images/logo-white.png'
 
 import Mobile from './mobile'
 import Otp from './otp'
@@ -86,12 +83,9 @@ class Verify extends Component {
     }
 
     return (
-      <div className='page'>
-        <Link to='/'>
-          <img src={LogoWhite} className='logo' />
-        </Link>
+      <div className='main-content verify-page'>
         <div id='ack'>
-          <p>Please verify your<br /> phone number</p>
+          <p>Please authenticate yourself</p>
         </div>
         {form}
         <Route exact path='/'>

@@ -7,7 +7,10 @@
     "compression": "^1.7.1",
     "express": "^4.16.2",
     "firebase": "^4.7.0",
+    "history": "^4.7.2",
     "html-webpack-plugin": "^2.30.1",
+    "lodash": "^4.17.4",
+    "querystring": "^0.2.0",
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
@@ -19,8 +22,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "webpack -p",
-    "dev": "webpack-dev-server",
+    "build": "webpack",
+    "dev": "webpack-dev-server --open -d --history-api-fallback --hot --inline --progress --colors",
     "analyze": "webpack --json > stats.json",
     "standard": "standard",
     "fix": "standard --fix"
@@ -34,10 +37,13 @@
     "compression-webpack-plugin": "^1.1.3",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.6",
+    "imagemin-webpack-plugin": "^1.6.1",
+    "node-sass": "^4.7.2",
+    "sass-loader": "^6.0.6",
     "standard": "^10.0.3",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^2.11.0"
   }
 }
