@@ -109,3 +109,23 @@
     width: 80px;
   }
 }
+
+.dept-page{
+  background: none;
+  height: 100%;
+  align-items: center;
+  padding: 15px;
+  overflow-y: scroll;
+  h2{
+    color: $primaryColor;
+    text-align: center;
+  }
+  form{
+    align-items: center;
+    input, select, button, label {
+      margin-top: 20px;
+      height: 50px;
+      font-size: 24px;
+    }
+  }
+}

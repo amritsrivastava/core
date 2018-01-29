@@ -16,7 +16,7 @@ export default class Org extends React.Component {
     this.props.orgName(this.state.org)
 
     firebaseApp.auth().onAuthStateChanged((user) => {
-      if (!user) {
+      if (user) {
         this.setState({user, verified: true})
       } else {
         this.setState({verified: false})

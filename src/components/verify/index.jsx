@@ -52,6 +52,10 @@ class Verify extends Component {
     this.state.confirmationResult.confirm(this.state.otp)
       .then((result) => {
         this.props.onVerify(true)
+
+        var user = firebase.auth().currentUser
+        user.updateProfile({displayName: name})
+        
         this.setState({redirect: true})
       })
       .catch((error) => {
@@ -68,6 +72,14 @@ class Verify extends Component {
     this.setState({otp: event.target.value})
   }
 
+  name (event) {
+    var name = event.target.value
+    this.setState({name: name})
+    // var user = firebase.auth().currentUser
+    //
+    // user.updateProfile({displayName: name})
+  }
+
   render () {
     let form = null
     let redirect = null
@@ -75,7 +87,7 @@ class Verify extends Component {
     if (this.state.otpSend) {
       form = <Otp onChange={this.handleOTP.bind(this)} onSubmit={this.verify.bind(this)} />
     } else {
-      form = <Mobile onChange={this.handlePhone.bind(this)} onSubmit={this.send.bind(this)} state={this.state.request} />
+      form = <Mobile onChange={this.handlePhone.bind(this)} onSubmit={this.send.bind(this)} state={this.state.request} name={this.name.bind(this)} />
     }
 
     if (this.state.redirect) {

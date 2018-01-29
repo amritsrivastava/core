@@ -58,7 +58,7 @@ class Main extends Component {
             <div className='col-1 nav-items'><Link to='/about'>About Us</Link></div>
             <div className='col-1 nav-items'><Link to='/contact'>Contact Us</Link></div>
             <div className='col-1 nav-items login'><Link to='/login'>LogIn</Link></div>
-            <span className='copyright'>Copyright &copy; {(new Date()).getFullYear()}</span>
+            {/* <span className='copyright'>Copyright &copy; {(new Date()).getFullYear()}</span> */}
         </div>
       )
     }

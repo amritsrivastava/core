@@ -14,22 +14,22 @@ var config = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
-    }),
-    new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-    new CompressionPlugin({
-      test: /\.jsx?$|\.css$|\.html$/,
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      threshold: 10240,
-      minRation: 0.8
-    }),
-    new ImageminPlugin({
-      disable: process.env.NODE_ENV !== 'production',
-      pngquant: {
-        quality: '40'
-      }
     })
+    // new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.optimize.AggressiveMergingPlugin(),
+    // new CompressionPlugin({
+    //   test: /\.jsx?$|\.css$|\.html$/,
+    //   asset: '[path].gz[query]',
+    //   algorithm: 'gzip',
+    //   threshold: 10240,
+    //   minRation: 0.8
+    // }),
+    // new ImageminPlugin({
+    //   disable: process.env.NODE_ENV !== 'production',
+    //   pngquant: {
+    //     quality: '40'
+    //   }
+    // })
   ],
   output: {
     path: DIST_DIR,
@@ -75,8 +75,7 @@ var config = {
   },
   devServer: {
     contentBase: DIST_DIR,
-    port: 8090,
-    host: '192.168.31.39'
+    port: 8090
   }
 }
 
