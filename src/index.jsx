@@ -78,7 +78,7 @@ class Main extends Component {
               <Route exact path='/verify' component={Verify} />
               <Route exact path='/register' render={() => <Register state={this.state.verified} />} />
               <Route exact path='/register/:dept' component={Complaint} />
-              <Route path='/complain/:id' component={Status} />
+              <Route path='/complain/:id' render={(props) => <Status {...props} />} />
               <Route path='/o/:org' render={(props) => <Org {...props} orgName={this.org.bind(this)}/>} />
               <Route path='/d/:org/:dept' component={Cleanliness} />
               {/* <Route path='/:org/verify' component={Verify} /> */}

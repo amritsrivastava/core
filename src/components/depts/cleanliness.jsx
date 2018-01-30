@@ -48,7 +48,7 @@ export default class Cleanliness extends React.Component {
   save (e) {
     var query = querystring.stringify(this.state.data)
     console.log(query)
-    fetch(`https://81fwd1on3h.execute-api.ap-south-1.amazonaws.com/dev/post?${query}`)
+    fetch(`https://81fwd1on3h.execute-api.ap-south-1.amazonaws.com/dev/post?${query}`, { mode: 'no-cors' })
     .then((res) => {
       console.log(res)
     })
@@ -159,19 +159,6 @@ export default class Cleanliness extends React.Component {
           <input id='file-upload' type='file' className='shadow-1' name='File Upload' accept="image/png, image/jpg, image/jpeg" />
           <button className='shadow-1' type='submit'>Submit</button>
         </form>
-        {/* <form onSubmit={this.save.bind(this)}>
-          <input type='text' required onChange={this.handleValue.bind(this)} className='form-el' name='name' placeholder='Your name' />
-          <input type='text' required onChange={this.handleValue.bind(this)} className='form-el' name='subject' placeholder='Subject' />
-          <input type='text' list='locations' required onChange={this.handleValue.bind(this)} className='form-el' name='location' placeholder='Location' />
-          <datalist id='locations'>
-            <option value='A-Block' />
-            <option value='B-Block' />
-            <option value='C-Block' />
-          </datalist>
-          <input type='text' required onChange={this.handleValue.bind(this)} className='form-el' name='description' placeholder='Description' />
-          <input type='file' className='form-el' name='File Upload' />
-          <button type='submit'>Submit</button>
-        </form> */}
       </div>
     )
   }
